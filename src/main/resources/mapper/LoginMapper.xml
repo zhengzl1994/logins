@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kido.dao.LoginDao">
+    <resultMap id="BaseResultMap" type="com.kido.domain.Login">
+        <id column="id" property="id"/>
+        <result column="userid" property="userId"/>
+        <result column="name" property="name"/>
+        <result column="passward" property="passWard"/>
+
+    </resultMap>
+
+    <select id="loginByName" parameterType="java.lang.String" resultType="com.kido.domain.Login">
+        select * from login where userid=#{userId};
+    </select>
+    <select id="loginByNameAndPassWard" parameterType="java.lang.String" resultType="com.kido.domain.Login">
+        SELECT * from login where name=#{name} and passward=#{passWard};
+    </select>
+    <insert id="insertUser" parameterType="com.kido.domain.Login">
+        insert into login(name,passward) values(#{name},#{secret});
+    </insert>
+    <update id="updateLogin" parameterType="com.kido.domain.Login">
+        update login set name=#{newName},passward=#{passWard} where name=#{newName};
+    </update>
+
+</mapper>

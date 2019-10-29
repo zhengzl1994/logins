@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"></link>
+    <title>注册</title>
+
+
+</head>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+<body>
+<div><span>用户名:</span></span><input type="text"  placeholder="请输入用户名" id="username"></div>&nbsp;
+<div><span>密码:</span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" placeholder="只能输入纯数字" id="passWard" name="passWard" maxlength="6" oninput="value=value.replace(/[^\d]/g,'')"></div>&nbsp;
+<div><input type="submit" class="btn btn-success pull-center" value="提交" id="submit">
+<input type="button" class="btn btn-success pull-center" value="返回" id="back" onclick="location.href='Login.html'">
+</div>
+<script type="text/javascript">
+
+
+    $(function () {
+        //点击提交的时候获取控件值是否为空
+        $("#submit").click(function () {
+//            alert(111);
+            var name = $("#username").val();
+            var secret = $("#passWard").val();
+//            alert(name);
+            if(name == "" || secret == "") {
+                alert("用户名或密码不能为空");
+                return false;
+            }
+            Register(name, secret);
+        })
+    })
+
+        function Register(name,secret) {
+//        alert(1111);
+            $.ajax({
+                url:"/zzl/register",
+                type:"post",
+                data:{"name":name,"secret":secret},
+                dataType:"text",
+                success:function (obj) {
+                    if (obj == "success") {
+                        alert("恭喜您,注册成功");
+                        window.location.href = "https://www.baidu.com/";
+                    }else {
+                        alert("用户名已存在,请返回登录页面直接登录");
+                    }
+                },
+                error:function () {
+                    alert("网络异常");
+
+                }
+            })
+    }
+
+</script>
+</body>
+</html>

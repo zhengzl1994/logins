@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+<h1>欢迎登录</h1>
+<span id="time">3</span>
+<span>秒钟之后进入百度网页</span>
+<a href="https://www.baidu.com">也可以直接点击进入百度网页</a>
+<script type="text/javascript">
+    var num = document.getElementById("time").innerHTML;
+    //定时函数
+    function count() {
+        num--;
+        document.getElementById("time").innerHTML=num;
+        if(num==0){
+            window.location="https://www.baidu.com";
+        }
+    }
+    setInterval("count()",1500);//调用定时函数
+</script>
+</body>
+</html>

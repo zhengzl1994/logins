@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<body>
+<h1>登录失败,用户名或密码错误或验证码错误</h1>
+<span id="time">3</span>
+<span>秒钟之后返回登录页面</span>
+<!--<button type="button" id="back">返回</button>-->
+<a href="/Login.html">也可以直接点击</a>
+
+<script type="text/javascript">
+      var num = document.getElementById("time").innerHTML;
+      //定时函数
+      function count() {
+          num--;
+          document.getElementById("time").innerHTML=num;
+          if(num==0){
+              window.location="http://localhost:8080/Login.html";
+          }
+      }
+      setInterval("count()",1500);//调用定时函数
+</script>
+</body>
+</html>

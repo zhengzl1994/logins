@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kido.dao.NailDao">
+    <resultMap id="BaseResultMap" type="com.kido.domain.Nail">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="tel" property="tel"/>
+        <result column="start_time" property="startTime"/>
+        <result column="place" property="place"/>
+        <result column="information" property="information"/>
+        <result column="kind" property="kind"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.kido.domain.Nail">
+        insert into v_nail (user_name,tel,start_time,place,information,kind)
+        values(#{userName},#{tel},#{startTime},#{place},#{information},#{kind});
+    </insert>
+    <select id="countTel" parameterType="com.kido.domain.Nail" resultType="java.lang.Integer">
+        SELECT count(tel) from v_nail where tel=#{tel};
+    </select>
+
+</mapper>

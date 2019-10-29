@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>省市联动</title>
+</head>
+
+<body>
+<select id="country" onchange="add1(this.value)">
+    <option value="0">请选择</option>
+    <option value="中国">中国</option>
+    <option value="美国">美国</option>
+    <option value="德国">德国</option>
+    <option value="日本">日本</option>
+</select>
+<select id="city"></select>
+</body>
+<script >
+   var arr = new Array(4);
+   arr[0] = ["中国","北京","上海","南京","安徽","河南"]
+   arr[1] = ["美国","华盛顿","纽约","休斯顿","林肯公园"]
+   arr[2] = ["德国","慕尼黑","柏林","捷克","波兰","比利时"]
+   arr[3] = ["日本","东京","北海道","大阪","樱花道"]
+
+   function add1(val) {
+       //创建一个数组在联动的时候存储元素
+       var city1 = document.getElementById("city");
+       var options11 = city1.getElementsByTagName("option");
+       for(var k=0;k<options11.length;k++){
+           var op = options11[k];
+           city1.removeChild(op);
+           k--;
+       }
+       for(var i=0;i<arr.length;i++){
+           var arr1 = arr[i]
+           var firstValue = arr1[0]
+           //如果数组里面第一个值和点击的时候传进来的参数值相等
+           //那么接下来对要联动的下拉框进行填充数据
+           if(firstValue==val){
+               //脚标从1开始
+               for(var j=1;j<arr1.length;j++){
+                  var value1 = arr1[j]
+                  //创建option
+                   var option1 = document.createElement("option")
+                   //创建一个文本框放元素
+                   var texts = document.createTextNode(value1);
+                   option1.appendChild(texts);
+                   city1.appendChild(option1);
+               }
+           }
+
+       }
+   }
+  /* function add1(val) {
+       //创建一个数组存储
+       var city1=document.getElementById("city")
+       var options11=city1.getElementsByTagName("option");
+       for(var m=0;m<options11.length;m++){
+           var op=options11[m];
+           city1.removeChild(op);
+           m--;
+       }
+       for(var i=0;i<arr.length;i++){
+           var arr1=arr[i]
+           var firstValue=arr1[0]
+           if(firstValue==val){
+               for(var j=1;j<arr1.length;j++){
+                   var value1=arr1[j]
+                   var option1=document.createElement("option")
+                   var text1=document.createTextNode(value1);
+                   option1.appendChild(text1);
+                   city1.appendChild(option1);
+               }
+           }
+       }
+       // alert(val)
+   }*/
+
+</script>
+</html>

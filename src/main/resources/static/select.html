@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>复选框</title>
+</head>
+    <body>
+        <input type="checkbox" name="love" />篮球
+        <input type="checkbox" name="love" />排球
+        <input type="checkbox" name="love" />羽毛球
+        <input type="checkbox" name="love" />乒乓球
+        <br/>
+        <input  type="button" value="全选" onclick="cheAll()"/>
+        <input  type="button" value="全不选" onclick="cheNo()"/>
+        <input  type="button" value="反选" onclick="cheOther()"/>
+    </body>
+ <script type="text/javascript">
+     function cheAll() {
+         //先获取所有的元素
+         var all =document.getElementsByName("love");
+         for(var i=0; i<all.length;i++){
+             var a = all[i];
+             a.checked=true;
+         }
+     }
+     function  cheNo() {
+         var all = document.getElementsByName("love");
+         for(var i=0;i<all.length;i++){
+             var a = all[i];
+             a.checked=false;
+         }
+     }
+     //反选  即点一次全选,再点击一次全部选
+     function cheOther() {
+         var all = document.getElementsByName("love");
+         for(var i=0;i<all.length;i++){
+             var a = all[i];
+             a.checked=!a.checked;
+         }
+     }
+ </script>
+</html>

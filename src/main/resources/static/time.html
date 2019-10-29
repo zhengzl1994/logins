@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>动态时间</title>
+</head>
+
+<body>
+    <p>系统当前时间:<span id="times"></span></p>
+</body>
+
+<script type="text/javascript">
+    function  receive() {
+        //获取系统当前时间
+        var date = new Date();
+        //转换时间格式
+        var transfer = date.toLocaleString();
+        var times = document.getElementById("times");
+        times.innerHTML = transfer;
+    }
+    setInterval("receive()",1000);
+</script>
+</html>

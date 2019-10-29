@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>登录</title>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"></link>
+</head>
+<body>
+<form name="form" accept-charset="utf-8"  action="/zzl/loginPage" method="post" onSubmit="javascript:return check_login();">
+    <div class="container">
+        <div class="form row">
+            <div class="form-horizontal col-md-offset-3" id="login_form">
+                <h3 class="form-title">郑中良的登录系统</h3>
+                <div class="col-md-9">
+                    <table>
+                        <tr>
+                            <td>用户名:</td>
+                            <td>
+                                <input class="form-control required" type="text" placeholder="请输入用户名" id="username" name="username" autofocus="autofocus" maxlength="20"/>
+                            </td>
+                        </tr>
+                        <tr>
+                        <td>密码:</td>
+                            <td>
+                                <input class="form-control required" type="password" placeholder="请输入密码" id="passWord" name="passWord" maxlength="8"/>
+                            </td>
+                        </tr>
+                        <tr>
+                        <td>验证码:</td>
+                        <td>
+                            <div class="col-xs-6 pull_left">
+                                <div class="form-group">
+                                    <input class="form-control" type="tel" id="verify_input" name="code" placeholder="请输入验证码" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 pull_left">
+                                <a href="javascript:void(0);" title="点击更换验证码">
+                                    <img id="imgVerify" src="getCode"  alt="更换验证码" height="36" width="100%" onclick="getVerify(this);">
+                                </a>
+                            </div>
+                        </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-9">
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn btn-success pull-center" name="submit">登录</button>
+                                <button type="reset" class="btn btn-success pull-center" name="reset">重置</button>
+                                <input type="button"name="lyp" id="button3" class="btn btn-success pull-center" value="注册" onclick="register()"/>
+                                <a href = "" style = "padding:0px 0px 0px 18px" onclick = "window.open('forgetPassword.html')">忘记密码？</a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+    $(function () {
+        //进入登录页面时自行进行刷新验证码图片
+        $("#imgVerify").trigger("click");
+    })
+//    //点击找回密码按钮
+//    function findBack() {
+//        var name=document.form.username.value();
+//        window.location.href="http://192.168.1.17:8080/backSecret.html?username="+name;
+//    }
+
+    //点击注册按钮
+    function register() {
+      window.location.href = "http://192.168.1.17:8080/Register.html";
+    }
+    function getVerify(obj){
+//        alert(1111);
+        obj.src = "/zzl/getCode?"+Math.random();
+    }
+    function check_login()
+    {
+        if(document.form.username.value=="")/*document.表单名.文本域名.value==''"*/
+        {
+            alert("请检查用户名是否为空！");
+            return false;
+        }
+        if(document.form.passWord.value=="")
+        {
+            alert("请检查您的密码是否为空！");
+            return false;
+        }
+        if(document.form.passWord.value.length < 6)
+        {
+            alert("您的密码长度小于6！");
+            return false;
+        }if(document.form.code.value.length =="")
+        {
+            alert("请输入验证码!");
+            return false;
+    }
+
+    }
+</script>
+
+</html>
